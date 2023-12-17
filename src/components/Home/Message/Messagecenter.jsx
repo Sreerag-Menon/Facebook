@@ -7,12 +7,15 @@ import { useSelector } from "react-redux";
 import { FieldValue, addDoc, serverTimestamp } from "firebase/firestore";
 import db from "../../../firebase/firebase";
 import { collection } from "firebase/firestore";
+import data from "@emoji-mart/data";
+import Picker from "@emoji-mart/react";
 
 function Messagecenter({ props }) {
   const user = useSelector((state) => state.user);
   const { username, image } = user.user;
   const [text, setText] = useState("");
   const [url, setUrl] = useState("");
+  const [emojiSelected, setEmojiSelected] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -26,6 +29,18 @@ function Messagecenter({ props }) {
     });
     setText("");
     setUrl("");
+  };
+  // const handleEmoji = () => {
+  //   setEmojiSelected((prev) => !prev);
+  // };
+  const emojiSelect = (e) => {
+    const sys = e.unified.split("_");
+    console.log(sys);
+    const emojiArray = [];
+    sys.forEach((el) => emojiArray.push("0x" + el));
+
+    let emoji = String.fromCodePoint(...emojiArray);
+    setText(text + emoji);
   };
   return (
     <div className="flex flex-col bg-white rounded-2xl w-full  mt-10 shadow-[0_5px_-7px_rgba(0,0,0.75)] ">
@@ -65,9 +80,19 @@ function Messagecenter({ props }) {
           <PhotoLibraryIcon className="text-green-600" />
           <h3 className="text-base ml-3 cursor-pointer">Photo/video</h3>
         </div>
-        <div className="p-3 flex items-center text-gray-400 m-[5px] hover:bg-[#eff2f5] rounded-[20px]">
+        <div
+          className="p-3 flex items-center text-gray-400 m-[5px] hover:bg-[#eff2f5] rounded-[20px]"
+          onClick={() => setEmojiSelected((prev) => !prev)}
+        >
           <InsertEmoticonIcon className="text-yellow-400" />
-          <h3 className="text-base ml-3 cursor-pointer">Feeling/Activity</h3>
+          <h3 className="text-base ml-3 cursor-pointer select-none">
+            Feeling/Activity
+          </h3>
+          {emojiSelected && (
+            <div className="absolute top-[52%] ">
+              <Picker data={data} onEmojiSelect={emojiSelect} />
+            </div>
+          )}
         </div>
       </div>
     </div>

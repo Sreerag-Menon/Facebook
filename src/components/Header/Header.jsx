@@ -13,9 +13,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Avatar, IconButton } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
-function Header(userdetails) {
+function Header() {
   const user = useSelector((state) => state.user);
   const { username, image } = user.user;
   console.log(username);
@@ -36,19 +35,11 @@ function Header(userdetails) {
         </div>
       </div>
       <div className="middle">
-        <NavLink
-          className={({ isActive }) => {
-            isActive ? (
-              <div className="headerOption">
-                <HomeIcon fontSize="large" />
-              </div>
-            ) : (
-              <div className="headerOptions">
-                <HomeOutlinedIcon />
-              </div>
-            );
-          }}
-        ></NavLink>
+        <NavLink>
+          <div className="headerOption">
+            <HomeIcon fontSize="large" />
+          </div>
+        </NavLink>
         <NavLink>
           <div className="headerOption">
             <PeopleOutlineIcon fontSize="large" />
