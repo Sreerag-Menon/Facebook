@@ -5,7 +5,7 @@ import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import { useSelector } from "react-redux";
 import { FieldValue, addDoc, serverTimestamp } from "firebase/firestore";
-import db from "../../../firebase/firebase";
+import db from "../../../utils/firebase/firebase";
 import { collection } from "firebase/firestore";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";

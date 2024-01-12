@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Post from "./Post";
-import db from "../../../firebase/firebase";
+import db from "../../../utils/firebase/firebase";
 import { doc } from "firebase/firestore";
 
 import {
@@ -17,7 +17,7 @@ function Posts() {
   const [counter, setCounter] = useState(0);
 
   const user = useSelector((state) => state.user);
-  const { username, image } = user.user;
+
   const [posts, setPost] = useState([]);
   useEffect(() => {
     const post = query(collection(db, "posts"), orderBy("timestamp", "desc"));

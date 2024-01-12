@@ -4,8 +4,6 @@ import Sidebar from "../Sidebar/Sidebar";
 import { Outlet } from "react-router-dom";
 import Widget from "../Home/Widget/Widget";
 import { useSelector } from "react-redux";
-import db from "../../firebase/firebase";
-import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 
 function Layout() {
   const [users, setUsers] = useState({});

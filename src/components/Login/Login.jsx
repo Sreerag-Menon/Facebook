@@ -3,7 +3,7 @@ import Image from "../../assets/Facebook.svg";
 import { Link, useNavigate } from "react-router-dom";
 
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import db, { provider } from "../../firebase/firebase";
+import db, { provider } from "../../utils/firebase/firebase";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../features/userSlice";
 import { collection, addDoc } from "firebase/firestore";
